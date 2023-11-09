@@ -1,9 +1,6 @@
 var express = require('express');
+const clock_controlers= require('../controllers/clock');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('clock', { title: 'Search Results Clock' });
-});
-
+/* GET clock */
+router.get('/', clock_controlers.clock_view_all_Page );
 module.exports = router;

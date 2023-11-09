@@ -32,4 +32,37 @@ exports.clock_list = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+
+    // VIEWS
+// Handle a show all view
+exports.clock_view_all_Page = async function(req, res) {
+    try{
+    theclock = await clock.find();
+    res.render('clock', { title: 'clock Search Results', results: theclock });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+
+// Handle clock create on POST.
+exports.clock_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new clock();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    document.name = req.body.name;
+    document.price = req.body.price;
+    document.color = req.body.color;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
     
