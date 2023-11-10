@@ -49,10 +49,14 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 require('dotenv').config();
-const connectionString =
+const connectionString = 
 process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect(connectionString,
+  {
+    useNewUrlParser : true,
+    useUnifiedTopology : true
+  });
 
 //Get the default connection
 var db = mongoose.connection;
@@ -93,4 +97,5 @@ console.error(err)
 }
 let reseed = true;
 if (reseed) {recreateDB();}
+
 
