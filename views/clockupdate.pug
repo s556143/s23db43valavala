@@ -1,0 +1,43 @@
+extends layout
+
+block content
+ h1= title
+
+ - let clockid = toShow._id
+ - let clockname = toShow.name
+ - let clockprice = toShow.price
+ - let clockcolor = toShow.color
+
+ div.row(class='mb-2')
+  div.mr-1 ID is
+  div #{clockid}
+  - let actionid = "/resource/clock/" + clockid
+  form(id='clockForm', action= actionid, method="PUT")
+   div.form-group
+    label.clockAttr(for='name') clock Name
+    input#name(type='text', name='name', value= clockname )
+   div.form-group
+    label.clockAttr(for='price') clock Price
+    input#price(type='number', name='price', value= clockprice )
+   div.form-group
+    label.clockAttr(for='color') clock Color
+    input#color(type='text', name='color', value= clockcolor )
+   input(type="submit")
+
+ script.
+  document.forms['clockForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+    method: 'PUT',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+     return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+     alert("Update succeded")
+     // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
+  });

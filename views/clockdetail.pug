@@ -1,0 +1,21 @@
+extends layout
+block content
+ h1= title
+
+ - let clockid = toShow._id
+ - let clockname = toShow.name
+ - let clockprice = toShow.price
+ - let clockcolor = toShow.color
+ div
+  div.row
+   div(class='clockAttr mr-3') clock ID is:
+   div #{clockid}
+  div.row
+   div(class='clockAttr mr-3') clock Name is:
+   div #{clockname}
+  div.row
+   div(class='clockAttr mr-3') clock Price is:
+   div #{clockprice}
+  div.row
+   div(class='clockAttr mr-3') clock Color is:
+   div #{clockcolor}

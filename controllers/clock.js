@@ -110,4 +110,45 @@ exports.clock_delete = async function(req, res) {
     res.send(`{"error": Error deleting ${err}}`);
     }
     };
+
+    // Handle a show one view with id specified by query
+exports.clock_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await clock.findById( req.query.id)
+    res.render('clockdetail',
+    { title: 'clock Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
     
+// Handle building the view for creating a clock.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.clock_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('clockcreate', { title: 'clock Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    
+// Handle building the view for updating a clock.
+// query provides the id
+exports.clock_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await clock.findById(req.query.id)
+    res.render('clockupdate', { title: 'clock Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
