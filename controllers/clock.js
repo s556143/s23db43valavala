@@ -77,7 +77,7 @@ res.send(`{"error": document for id ${req.params.id} not found`);
 }
 };
 
-//Handle Costume update form on PUT.
+//Handle clock update form on PUT.
 exports.clock_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
@@ -97,3 +97,17 @@ res.send(`{"error": ${err}: Update for id ${req.params.id}
 failed`);
 }
 };
+
+//Handle clock delete on DELETE.
+exports.clock_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await clock.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
