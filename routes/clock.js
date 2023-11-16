@@ -16,3 +16,6 @@ router.get('/create', clock_controlers.clock_create_Page);
 
 /* GET create update page */
 router.get('/update', clock_controlers.clock_update_Page);
+
+/* GET delete clock page */
+router.get('/delete', clock_controlers.clock_delete_Page);
