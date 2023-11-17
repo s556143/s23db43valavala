@@ -9,7 +9,11 @@ block content
       div.col-sm-2(onclick=`buy(${index})`) #{clock.name}
       div.col-sm-2(onclick=`buy(${index})`) #{clock.price}
       div.col-sm-2(onclick=`buy(${index})`) #{clock.color}
-       button.btn( class="btn-primary ml-1", onclick= `window.location.href='/clock/update?id=${clock._id}'`) Update
+      - let destination = `dispatch(\"/clock/update?id=${clock._id}\")`
+         div(class="row-sm-2", class="m-1") Item #{clock.name}(#{clock.price}) is #{clock.color}
+         button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+       
       br
       hr
       
