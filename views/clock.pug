@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - var results= [{ name:"lighthouseclock", price:2500, color: "Blue"},{ name:"Dwarfclock", price:3000, color: "Red"},{ name:"Bracketclock", price:4800, color:"Violet"}]   
+  - var items= results
    div.container-fluid
     div.row 
      each clock,index in results

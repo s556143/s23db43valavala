@@ -57,8 +57,8 @@ exports.clock_create_post = async function(req, res) {
     document.price = req.body.price;
     document.color = req.body.color;
     try{
-    let result = await document.save();
-    res.send(result);
+    let results = await document.save();
+    res.send(results);
     }
     catch(err){
     res.status(500);
