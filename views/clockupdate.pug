@@ -4,10 +4,10 @@ block content
   h1= title
 
   - if (toShow)
-    - let clockid = toShow._id || 'N/A'
-    - let clockname = toShow.name || 'N/A'
-    - let clockprice = toShow.price || 'N/A'
-    - let clockcolor = toShow.color || 'N/A'
+    - let clockid = toShow._id
+    - let clockname = toShow.name
+    - let clockprice = toShow.price
+    - let clockcolor = toShow.color
 
     div.row(class='mb-2')
       div.col-2.mr-1 ID is

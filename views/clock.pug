@@ -9,12 +9,20 @@ block content
       div.col-sm-2(onclick=`buy(${index})`) #{clock.name}
       div.col-sm-2(onclick=`buy(${index})`) #{clock.price}
       div.col-sm-2(onclick=`buy(${index})`) #{clock.color}
+       button.btn( class="btn-primary ml-1", onclick= `window.location.href='/clock/update?id=${clock._id}'`) Update
       br
       hr
+      
     
 
     script. 
        function buy(index)
        {
-        alert(`you purchased Item ${index+1}`)
+        alert(`you purchased Item ${index+1}`);
        }
+
+       function dispatch(path)
+       {
+        window.location.href = path;
+       }
+
