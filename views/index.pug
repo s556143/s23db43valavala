@@ -1,22 +1,33 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to #{title}  , entertainer
+//-   button(type="button", class="btn btn-secondary" onclick="goFaster()") Press Me
+//-   br
+//-   br
+//-   br
+//-   div#faster Increase the speed 
+//-   a(href="/clock") view clock page
+
+
+//-   script.
+//-       mph = 20;
+//-       change = 1;
+//-       function goFaster(){
+//-         mph += change;
+//-         change += 1;
+//-         document.getElementById("faster").innerHTML= "MPH" + mph + "change" + change;}
+
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}  , entertainer
-  button(type="button", class="btn btn-secondary" onclick="goFaster()") Press Me
-  br
-  br
-  br
-  div#faster Increase the speed 
-  a(href="/clock") view clock page
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/clock") Take me to clock
+    br
+    a(href="/logout") Logout
 
-
-  script.
-      mph = 20;
-      change = 1;
-      function goFaster(){
-        mph += change;
-        change += 1;
-        document.getElementById("faster").innerHTML= "MPH" + mph + "change" + change;}
-
-      

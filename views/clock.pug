@@ -2,31 +2,21 @@ extends layout
 
 block content
   h1= title
-  - var items= results
-   div.container-fluid
-    div.row 
-     each clock,index in results
-      div.col-sm-2(onclick=`buy(${index})`) #{clock.name}
-      div.col-sm-2(onclick=`buy(${index})`) #{clock.price}
-      div.col-sm-2(onclick=`buy(${index})`) #{clock.color}
-      - let destination = `dispatch(\"/clock/update?id=${clock._id}\")`
-         div(class="row-sm-2", class="m-1") Item #{clock.name}(#{clock.price}) is #{clock.color}
-         button.btn( class="btn-primary ml-1", onclick= destination) Update
-
-       
-      br
-      hr
-      
-    
-
-    script. 
-       function buy(index)
-       {
-        alert(`you purchased Item ${index+1}`);
-       }
-
-       function dispatch(path)
-       {
-        window.location.href = path;
-       }
-
+  a(class="btn btn-success" href="/clock/create") Create
+  div.container-fluid
+    div.row
+      each clock, index in results
+        div.col-sm-4.mb-3
+          div.card
+            div.card-body(onclick=`buy(${index})`)
+              h5.card-title #{clock.name}
+              p.card-text Price: #{clock.price}
+              p.card-text Color: #{clock.color}
+              - let updateDestination = `/clock/update?id=${clock._id}`
+              a.btn.btn-primary(href=updateDestination) Update
+              a.btn.btn-danger(href=`/clock/delete?id=${clock._id}`) Delete
+              a.btn.btn-dark(href=`/clock/detail?id=${clock._id}`) Detail
+  script.
+    function buy(index) {
+      alert(`You purchased Item ${index + 1}`);
+    }
