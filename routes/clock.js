@@ -24,10 +24,10 @@ module.exports = router;
 router.get('/detail', clock_controlers.clock_view_one_Page);
 
 /* GET create clock page */
-router.get('/create', clock_controlers.clock_create_Page);
+router.get('/create', secured, clock_controlers.clock_create_Page);
 
 /* GET create update page */
-router.get('/update', clock_controlers.clock_update_Page);
+router.get('/update', secured, clock_controlers.clock_update_Page);
 
 /* GET delete clock page */
-router.get('/delete', clock_controlers.clock_delete_Page);
+router.get('/delete', secured ,clock_controlers.clock_delete_Page);
